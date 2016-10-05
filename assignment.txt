@@ -1,0 +1,3 @@
+Email Validation with DB Assignment
+
+https://github.com/DenverRenGuy/email_db
