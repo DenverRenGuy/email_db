@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Email with Validation and DB Access Success Page</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='site.css') }}" type="text/css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="message">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class=" {{category}} "> {{message}}
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+
+            <div class="emails">
+                <h2>These are the emails currently in the database!</h2>
+                {% for email in all_emails: %}
+                    <p> Email: {{ email['email'] }}, Created At: {{ email['created_at'] }}</p>
+                {% endfor %}
+
+            </div>
+
+            <form class="delete-email" action="/process_delete" method="post">
+                <input type="text" name="email" placeholder="Email will be fully deleted!" value="">
+                <input type="submit" name="submit" value="Delete Email">
+            </form>
+
+        </div>
+    </body>
+</html>
